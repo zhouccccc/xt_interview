@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -19,6 +20,17 @@ public class AccountController {
     @GetMapping
     public ResponseEntity<List<AccountDTO>> getAll() {
         return ResponseEntity.ok(accountService.getAllAccounts());
+    }
+
+    // 任务三：用户分页搜索接口（page从0开始）
+    @GetMapping("/page")
+    public ResponseEntity<Map<String, Object>> getPage(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) Integer status,
+            @RequestParam(required = false) Integer roleLevel) {
+        return ResponseEntity.ok(accountService.getAccountsPage(page, size, username, status, roleLevel));
     }
 
     @GetMapping("/{id}")

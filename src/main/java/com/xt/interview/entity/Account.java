@@ -38,6 +38,10 @@ public class Account {
     @Column(name = "deleted")
     private Integer deleted;
 
+    // 任务二：关联所属部门ID（非必填）
+    @Column(name = "department_id")
+    private Long departmentId;
+
     @Column(name = "create_time", updatable = false)
     private LocalDateTime createTime;
 
@@ -88,6 +92,9 @@ public class Account {
 
     public Integer getDeleted() { return deleted; }
     public void setDeleted(Integer deleted) { this.deleted = deleted; }
+
+    public Long getDepartmentId() { return departmentId; }
+    public void setDepartmentId(Long departmentId) { this.departmentId = departmentId; }
 
     public LocalDateTime getCreateTime() { return createTime; }
     public void setCreateTime(LocalDateTime createTime) { this.createTime = createTime; }

@@ -79,6 +79,8 @@ public class AuthController {
             user.put("phone", account.getPhone());
             user.put("roleLevel", account.getRoleLevel());
             user.put("status", account.getStatus());
+            // 登录成功时顺带把当前用户的部门ID带回去
+            user.put("departmentId", account.getDepartmentId());
             response.put("user", user);
 
             return ResponseEntity.ok(response);

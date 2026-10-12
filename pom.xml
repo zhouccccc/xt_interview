@@ -18,6 +18,7 @@
     <description>XT Interview Project</description>
 
     <properties>
+        <!-- 面试指定技术栈：Java 26 -->
         <java.version>26</java.version>
         <flyway.version>10.20.1</flyway.version>
         <lombok.version>1.18.30</lombok.version>
@@ -38,6 +39,13 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 引入H2作为本地测试兜底，没起MySQL也能直接跑 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 

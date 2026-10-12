@@ -13,6 +13,11 @@
           <el-icon><User /></el-icon>
           <span>用户管理</span>
         </el-menu-item>
+        <!-- 任务一：侧边栏新增部门管理菜单项 -->
+        <el-menu-item index="/departments">
+          <el-icon><OfficeBuilding /></el-icon>
+          <span>部门管理</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
 
@@ -37,12 +42,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { authApi } from '@/api'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { User } from '@element-plus/icons-vue'
+import { User, OfficeBuilding } from '@element-plus/icons-vue'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -59,7 +64,8 @@ const userName = computed(() => {
 
 const pageTitle = computed(() => {
   const titleMap: Record<string, string> = {
-    '/users': '用户管理'
+    '/users': '用户管理',
+    '/departments': '部门管理'
   }
   return titleMap[route.path] || '首页'
 })
@@ -67,6 +73,13 @@ const pageTitle = computed(() => {
 function handleMenuSelect(index: string) {
   router.push(index)
 }
+
+watch(
+  () => route.path,
+  (path) => {
+    activeMenu.value = path
+  }
+)
 
 onMounted(() => {
   userStore.loadFromStorage()

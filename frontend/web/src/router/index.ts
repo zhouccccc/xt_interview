@@ -13,6 +13,13 @@ const router = createRouter({
           name: 'UserManagement',
           component: () => import('@/views/UserManagement.vue'),
           meta: { requiresAuth: true, title: '用户管理' }
+        },
+        // 任务一：新增部门管理路由页面
+        {
+          path: 'departments',
+          name: 'DepartmentManagement',
+          component: () => import('@/views/DepartmentManagement.vue'),
+          meta: { requiresAuth: true, title: '部门管理' }
         }
       ]
     },

@@ -2,13 +2,15 @@ package com.xt.interview.repository;
 
 import com.xt.interview.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
+// 继承 JpaSpecificationExecutor 方便任务三做多条件的动态分页过滤
+public interface AccountRepository extends JpaRepository<Account, Long>, JpaSpecificationExecutor<Account> {
     List<Account> findByDeleted(Integer deleted);
     Optional<Account> findByIdAndDeleted(Long id, Integer deleted);
     Optional<Account> findByUsernameAndDeleted(String username, Integer deleted);
